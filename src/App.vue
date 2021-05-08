@@ -1,6 +1,8 @@
 <template>
   <TheNavigation />
-  <router-view />
+  <main class="page__main">
+    <router-view />
+  </main>
 </template>
 <script>
 import "@/assets/style/main.css";
