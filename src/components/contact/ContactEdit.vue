@@ -70,9 +70,11 @@
 import { getNames } from "country-list";
 export default {
   name: "ContactEdit",
+  props: { uuid: { type: Number }, contact: { type: Object } },
   data() {
     return {
       entry: {
+        id: null,
         firstName: "",
         lastName: "",
         email: "",
@@ -81,9 +83,22 @@ export default {
       countries: getNames(),
     };
   },
+  mounted() {
+    if (this.uuid) {
+      this.entry.id = this.uuid;
+    }
+    if (this.contact) {
+      (this.entry.id = this.contact.id),
+        (this.entry.firstName = this.contact.firstName),
+        (this.entry.lastName = this.contact.lastName),
+        (this.entry.email = this.contact.email),
+        (this.entry.country = this.contact.country);
+    }
+  },
   methods: {
     addNewContact() {
       console.log("adding");
+      console.log(this.entry.id);
       console.log(this.entry.firstName);
       console.log(this.entry.lastName);
       console.log(this.entry.email);

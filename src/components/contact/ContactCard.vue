@@ -10,10 +10,12 @@
         :icon="['fas', 'user-edit']"
         class="btn--success btn--round"
         title="edit contact"
+        @click="editContact"
       /><BaseButton
         :icon="['fas', 'user-times']"
         class="btn--danger btn--round"
         title="delete contact"
+        @click="deleteContact(contact.id)"
       />
     </div>
   </article>
@@ -25,13 +27,27 @@ export default {
   props: {
     contact: { type: Object, required: true },
   },
+  data() {
+    return {
+      edit: false,
+    };
+  },
+  methods: {
+    editContact() {
+      console.log("edit");
+      // this.edit = true;
+    },
+    deleteContact(id) {
+      console.log(id);
+    },
+  },
 };
 </script>
 
 <style scoped>
 .contact__item {
   padding: 12px;
-  border: 1px solid grey;
+  border: 1px solid #d8d8d8;
   border-collapse: collapse;
   /* border-top: none; */
   display: grid;
@@ -47,5 +63,10 @@ export default {
   display: flex;
   justify-content: left;
   align-items: center;
+}
+
+.contact__cell.buttons {
+  width: 100%;
+  justify-content: space-around;
 }
 </style>
