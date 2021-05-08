@@ -135,10 +135,10 @@ export default {
   validations() {
     return {
       entry: {
-        firstName: { required }, // Matches this.entry.firstName
-        lastName: { required }, // Matches this.entry.lastName
-        email: { required, email }, // Matches this.entry.email
-        country: { required }, // Matches this.entry.country
+        firstName: { required },
+        lastName: { required },
+        email: { required, email },
+        country: { required },
       },
     };
   },
@@ -156,6 +156,8 @@ export default {
   },
   methods: {
     upsertContact() {
+      this.v$.$touch();
+      if (this.v$.$error) return;
       this.$store.dispatch("upsertContact", this.entry);
       this.close();
       this.$emit("show-msg");
