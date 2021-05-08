@@ -3,4 +3,28 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-createApp(App).use(store).use(router).mount("#app");
+import upperFirst from "lodash/upperFirst";
+import camelCase from "lodash/camelCase";
+
+// webpack needs to require all of the files with the Base prefix
+const requireComponent = require.context(
+  "./components/ui",
+  false,
+  /Base[A-Z]\w+\.(vue|js)$/
+);
+
+const app = createApp(App);
+
+requireComponent.keys().forEach((fileName) => {
+  const componentConfig = requireComponent(fileName);
+
+  const componentName = upperFirst(
+    camelCase(fileName.replace(/^\.\/(.*)\.\w+$/, "$1"))
+  );
+
+  app.component(componentName, componentConfig.default || componentConfig);
+});
+
+// base component global registration finish
+
+app.use(store).use(router).mount("#app");
