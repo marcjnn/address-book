@@ -2,29 +2,8 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
-
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faCheck,
-  faUserEdit,
-  faUserTimes,
-  faUserPlus,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
-import { faWindowClose as farWindowClose } from "@fortawesome/free-regular-svg-icons";
-
-library.add(
-  faCheck,
-  faUserEdit,
-  faUserTimes,
-  faUserPlus,
-  faTimes,
-  farWindowClose
-);
 
 // webpack needs to require all of the files with the Base prefix
 const requireComponent = require.context(
@@ -45,8 +24,28 @@ requireComponent.keys().forEach((fileName) => {
   app.component(componentName, componentConfig.default || componentConfig);
 });
 
-// base component global registration finish
+// FontAwesome library
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCheck,
+  faUserEdit,
+  faUserTimes,
+  faUserPlus,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+import { faWindowClose as farWindowClose } from "@fortawesome/free-regular-svg-icons";
 
+library.add(
+  faCheck,
+  faUserEdit,
+  faUserTimes,
+  faUserPlus,
+  faTimes,
+  farWindowClose
+);
+
+// APP
 app
   .use(store)
   .use(router)

@@ -9,8 +9,8 @@
   </ul>
   <!-- !v-show because has to mount only when clicked -->
   <BaseModal v-if="edit" @close="closeModalWindow">
-    <template v-slot:header>Edit contact</template>
-    <template v-slot:main>
+    <template #header>Edit contact</template>
+    <template #main>
       <ContactEdit
         :contact="editContact(id)"
         :edit="true"

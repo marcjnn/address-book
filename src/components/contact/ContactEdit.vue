@@ -9,7 +9,13 @@
           placeholder="eg. Anthony..."
           type="text"
           :isRequired="true"
+          @blur="v$.entry.firstName.$touch"
         />
+        <template v-if="v$.entry.firstName.$error">
+          <p v-if="v$.entry.firstName.required.$invalid" class="input__error">
+            First name is required
+          </p>
+        </template>
       </div>
       <div class="input__container">
         <BaseInput
@@ -18,7 +24,13 @@
           placeholder="eg. Mallark..."
           type="text"
           :isRequired="true"
+          @blur="v$.entry.lastName.$touch"
         />
+        <template v-if="v$.entry.lastName.$error">
+          <p v-if="v$.entry.lastName.required.$invalid" class="input__error">
+            Last name is required
+          </p>
+        </template>
       </div>
       <div class="input__container">
         <BaseInput
@@ -27,7 +39,16 @@
           placeholder="eg. anthony@mail.com..."
           type="text"
           :isRequired="true"
+          @blur="v$.entry.email.$touch"
         />
+        <template v-if="v$.entry.email.$error">
+          <p v-if="v$.entry.email.required.$invalid" class="input__error">
+            Email is required
+          </p>
+          <p v-if="v$.entry.email.email.$invalid" class="input__error">
+            Enter a valid email address
+          </p>
+        </template>
       </div>
       <div class="input__container">
         <BaseSelect
@@ -35,7 +56,13 @@
           v-model="entry.country"
           label="Country"
           :isRequired="true"
+          @blur="v$.entry.country.$touch"
         />
+        <template v-if="v$.entry.country.$error">
+          <p v-if="v$.entry.country.required.$invalid" class="input__error">
+            Country is required
+          </p>
+        </template>
       </div>
     </fieldset>
     <fieldset class="fieldset">
@@ -75,17 +102,23 @@
         >
       </div>
     </fieldset>
+    <!-- <p>{{ v$.entry }}</p> -->
   </form>
 </template>
 
 <script>
 import { getNames } from "country-list";
+import useVuelidate from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
 import UniqueID from "@/features/UniqueID";
 export default {
   name: "ContactEdit",
   props: {
     contact: { type: Object },
     edit: { type: Boolean, default: false },
+  },
+  setup() {
+    return { v$: useVuelidate() };
   },
   data() {
     return {
@@ -97,6 +130,16 @@ export default {
         country: "",
       },
       countries: getNames(),
+    };
+  },
+  validations() {
+    return {
+      entry: {
+        firstName: { required }, // Matches this.entry.firstName
+        lastName: { required }, // Matches this.entry.lastName
+        email: { required, email }, // Matches this.entry.email
+        country: { required }, // Matches this.entry.country
+      },
     };
   },
   mounted() {
@@ -113,7 +156,6 @@ export default {
   },
   methods: {
     upsertContact() {
-      console.log(this.entry);
       this.$store.dispatch("upsertContact", this.entry);
       this.close();
       this.$emit("show-msg");
@@ -158,6 +200,10 @@ export default {
   flex-direction: column; */
   text-align: left;
   width: 50%;
+}
+
+.input__error {
+  color: crimson;
 }
 
 .fieldset .buttons {
