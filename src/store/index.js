@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import createPersistedState from "vuex-persistedstate";
 import SortFunctions from "@/features/SortFunctions";
 
 export default createStore({
@@ -71,4 +72,5 @@ export default createStore({
     },
   },
   modules: {},
+  plugins: [createPersistedState()],
 });
