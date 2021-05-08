@@ -27,14 +27,10 @@ export default {
   props: {
     contact: { type: Object, required: true },
   },
-  data() {
-    return {
-      edit: false,
-    };
-  },
   methods: {
     editContact() {
       console.log("edit");
+      this.$emit("edit-contact");
       // this.edit = true;
     },
     deleteContact(id) {

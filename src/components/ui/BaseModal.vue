@@ -1,9 +1,18 @@
 <template>
   <section class="modal__container" v-if="open" @click.self="closeModalWindow">
     <div class="modal">
-      <div class="modal__header">
-        <slot name="header"></slot>
-      </div>
+      <header class="modal__header">
+        <h2>
+          <slot name="header"></slot>
+        </h2>
+        <div class="modal__closeBtn">
+          <BaseButton
+            :icon="['far', 'window-close']"
+            @click="closeModalWindow"
+            title="close window"
+          />
+        </div>
+      </header>
       <div class="modal__main">
         <slot name="main"></slot>
       </div>
@@ -14,17 +23,17 @@
 <script>
 export default {
   name: "BaseModal",
-  // props: {
-  //   open: {
-  //     type: Boolean,
-  //     default: false,
-  //   },
-  // },
-  // methods: {
-  //   closeModalWindow() {
-  //     this.$emit("close");
-  //   },
-  // },
+  props: {
+    open: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    closeModalWindow() {
+      this.$emit("close");
+    },
+  },
 };
 </script>
 
@@ -47,6 +56,7 @@ export default {
   background-color: rgba(68, 68, 68, 0.7);
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .modal__header {
@@ -54,5 +64,12 @@ export default {
   display: flex;
   justify-content: center;
   margin: 0 0 12px;
+}
+
+.modal__closeBtn {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 </style>

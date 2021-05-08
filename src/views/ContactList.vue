@@ -1,18 +1,26 @@
 <template>
   <ul class="contact__list">
     <li v-for="(contact, index) in contactsSorted" :key="index">
-      <ContactCard :contact="contact" />
+      <ContactCard :contact="contact" @edit-contact="editContact(contact.id)" />
     </li>
   </ul>
+  <BaseModal :open="edit" @close="closeModalWindow">
+    <template v-slot:header>Edit contact</template>
+    <template v-slot:main>
+      <ContactEdit :contact="contactToEdit" @save-changes="saveChanges"
+    /></template>
+  </BaseModal>
 </template>
 
 <script>
 import ContactCard from "@/components/contact/ContactCard.vue";
+import ContactEdit from "@/components/contact/ContactEdit.vue";
 
 export default {
   name: "ContactList",
   components: {
     ContactCard,
+    ContactEdit,
   },
   data() {
     return {
@@ -46,6 +54,8 @@ export default {
           country: "Germany",
         },
       ],
+      edit: false,
+      contactToEdit: null,
     };
   },
   mounted() {
@@ -78,6 +88,24 @@ export default {
         return 1;
       }
       return 0;
+    },
+    editContact(id) {
+      this.contactToEdit = this.contacts.find((contact) => contact.id === id);
+      console.log(id);
+      this.edit = true;
+    },
+    closeModalWindow() {
+      this.edit = false;
+      console.log(this.contacts);
+    },
+    saveChanges(payload) {
+      console.log("trying to save changes");
+      console.log(payload);
+      let contactEditedIndex = this.contacts.findIndex(
+        (contact) => contact.id === payload.id
+      );
+      this.contacts.splice(contactEditedIndex, 1, payload);
+      this.closeModalWindow();
     },
   },
 };

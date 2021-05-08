@@ -98,11 +98,12 @@ export default {
   methods: {
     addNewContact() {
       console.log("adding");
-      console.log(this.entry.id);
-      console.log(this.entry.firstName);
-      console.log(this.entry.lastName);
-      console.log(this.entry.email);
-      console.log(this.entry.country);
+      // console.log(this.entry.id);
+      // console.log(this.entry.firstName);
+      // console.log(this.entry.lastName);
+      // console.log(this.entry.email);
+      // console.log(this.entry.country);
+      this.$emit("save-changes", this.entry);
       // console.log(store);
       // store.commit('addNewContact', this.entry)
       // console.log(store.state.contacts);

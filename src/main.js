@@ -15,8 +15,16 @@ import {
   faUserPlus,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { faWindowClose as farWindowClose } from "@fortawesome/free-regular-svg-icons";
 
-library.add(faCheck, faUserEdit, faUserTimes, faUserPlus, faTimes);
+library.add(
+  faCheck,
+  faUserEdit,
+  faUserTimes,
+  faUserPlus,
+  faTimes,
+  farWindowClose
+);
 
 // webpack needs to require all of the files with the Base prefix
 const requireComponent = require.context(
