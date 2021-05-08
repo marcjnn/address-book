@@ -39,24 +39,20 @@ export default createStore({
       return state.contacts.sort(SortFunctions().sortByLastName);
     },
     contactToEdit: (state) => (id) => {
-      console.log("trying to access getter");
       return state.contacts.find((contact) => contact.id === id);
     },
   },
   mutations: {
     ADD_CONTACT(state, contactToAdd) {
-      console.log("adding to state");
       state.contacts.push(contactToAdd);
     },
     EDIT_CONTACT(state, contactToEdit) {
-      console.log("editing state");
       let contactEditedIndex = state.contacts.findIndex(
         (contact) => contact.id === contactToEdit.id
       );
       state.contacts.splice(contactEditedIndex, 1, contactToEdit);
     },
     DELETE_CONTACT(state, id) {
-      console.log("deleting from state");
       let contactEditedIndex = state.contacts.findIndex(
         (contact) => contact.id === id
       );

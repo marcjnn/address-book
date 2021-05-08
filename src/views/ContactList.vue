@@ -53,12 +53,10 @@ export default {
   methods: {
     editContact(id) {
       this.idToEdit = id;
-      console.log(id);
       this.edit = true;
     },
     closeModalWindow() {
       this.edit = false;
-      console.log(this.contacts);
     },
   },
 };

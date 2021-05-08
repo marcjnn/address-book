@@ -29,12 +29,10 @@ export default {
   },
   methods: {
     editContact() {
-      console.log("edit");
       this.$emit("edit-contact");
       // this.edit = true;
     },
     deleteContact(id) {
-      console.log(id);
       this.$store.dispatch("deleteContact", id);
     },
   },

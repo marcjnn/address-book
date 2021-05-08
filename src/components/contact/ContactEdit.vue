@@ -109,11 +109,9 @@ export default {
   },
   methods: {
     upsertContact() {
-      console.log("adding");
       this.$store.dispatch("upsertContact", this.entry);
     },
     resetForm() {
-      console.log("deleting");
       this.entry.firstName = "";
       this.entry.lastName = "";
       this.entry.email = "";
