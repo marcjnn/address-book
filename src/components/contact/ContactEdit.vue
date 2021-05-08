@@ -36,30 +36,38 @@
     </fieldset>
     <fieldset class="fieldset">
       <legend class="legend">Add to address book</legend>
-      <div class="buttons">
-        <router-link :to="{ name: 'ContactList' }"
-          ><BaseButton
-            type="button"
-            :icon="['fas', 'times']"
-            class="btn--danger"
-            title="cancel"
-            >Cancel</BaseButton
-          ></router-link
-        >
+      <div class="buttons" v-if="!edit">
         <BaseButton
           type="button"
           :icon="['fas', 'times']"
           class="btn--danger"
-          @click="clearForm"
+          @click="resetForm"
           title="reset form"
-          >Reset</BaseButton
+          >Reset form</BaseButton
         >
         <BaseButton
           type="submit"
           :icon="['fas', 'check']"
           class="btn--success"
           title="add contact to address book"
-          >Submit</BaseButton
+          >Add contact</BaseButton
+        >
+      </div>
+      <div class="buttons" v-else>
+        <BaseButton
+          type="button"
+          :icon="['fas', 'times']"
+          class="btn--danger"
+          @click="close"
+          title="reset form"
+          >Close without saving</BaseButton
+        >
+        <BaseButton
+          type="submit"
+          :icon="['fas', 'check']"
+          class="btn--success"
+          title="add contact to address book"
+          >Save changes</BaseButton
         >
       </div>
     </fieldset>
@@ -70,7 +78,11 @@
 import { getNames } from "country-list";
 export default {
   name: "ContactEdit",
-  props: { uuid: { type: Number }, contact: { type: Object } },
+  props: {
+    uuid: { type: Number },
+    contact: { type: Object },
+    edit: { type: Boolean, default: false },
+  },
   data() {
     return {
       entry: {
@@ -100,12 +112,15 @@ export default {
       console.log("adding");
       this.$store.dispatch("upsertContact", this.entry);
     },
-    clearForm() {
+    resetForm() {
       console.log("deleting");
       this.entry.firstName = "";
       this.entry.lastName = "";
       this.entry.email = "";
       this.entry.country = "";
+    },
+    close() {
+      this.$emit("close");
     },
   },
 };

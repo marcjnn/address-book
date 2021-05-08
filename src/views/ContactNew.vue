@@ -1,4 +1,5 @@
 <template>
+  <h2>Add new contact</h2>
   <ContactEdit :uuid="uuid" />
 </template>
 

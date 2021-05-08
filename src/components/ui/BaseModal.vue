@@ -1,5 +1,5 @@
 <template>
-  <section class="modal__container" v-if="open" @click.self="closeModalWindow">
+  <section class="modal__container" @click.self="closeModalWindow">
     <div class="modal">
       <header class="modal__header">
         <h2>

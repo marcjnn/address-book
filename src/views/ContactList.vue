@@ -4,10 +4,13 @@
       <ContactCard :contact="contact" @edit-contact="editContact(contact.id)" />
     </li>
   </ul>
-  <BaseModal :open="edit" @close="closeModalWindow">
+  <BaseModal v-show="edit" @close="closeModalWindow">
     <template v-slot:header>Edit contact</template>
     <template v-slot:main>
-      <ContactEdit :contact="contactToEdit(idToEdit)"
+      <ContactEdit
+        :contact="contactToEdit(idToEdit)"
+        :edit="true"
+        @close="closeModalWindow"
     /></template>
   </BaseModal>
 </template>
