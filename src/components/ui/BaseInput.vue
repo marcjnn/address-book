@@ -1,5 +1,7 @@
 <template>
-  <label v-if="label" class="field__label">{{ label }}</label>
+  <label v-if="label" class="field__label" :class="{ required: isRequired }">{{
+    label
+  }}</label>
   <input
     :value="modelValue"
     v-bind="$attrs"
@@ -26,8 +28,16 @@ export default {
       type: [String, Number],
       default: "",
     },
+    isRequired: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.required::after {
+  content: "*";
+}
+</style>

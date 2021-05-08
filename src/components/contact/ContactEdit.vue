@@ -8,6 +8,7 @@
           label="First name"
           placeholder="eg. Anthony..."
           type="text"
+          :isRequired="true"
         />
       </div>
       <div class="input__container">
@@ -16,6 +17,7 @@
           label="Last name"
           placeholder="eg. Mallark..."
           type="text"
+          :isRequired="true"
         />
       </div>
       <div class="input__container">
@@ -24,6 +26,7 @@
           label="Email"
           placeholder="eg. anthony@mail.com..."
           type="text"
+          :isRequired="true"
         />
       </div>
       <div class="input__container">
@@ -31,6 +34,7 @@
           :options="countries"
           v-model="entry.country"
           label="Country"
+          :isRequired="true"
         />
       </div>
     </fieldset>
@@ -76,6 +80,7 @@
 
 <script>
 import { getNames } from "country-list";
+import UniqueID from "@/features/UniqueID";
 export default {
   name: "ContactEdit",
   props: {
@@ -85,6 +90,7 @@ export default {
   data() {
     return {
       entry: {
+        id: null,
         firstName: "",
         lastName: "",
         email: "",
@@ -94,17 +100,23 @@ export default {
     };
   },
   mounted() {
-    if (this.contact) {
-      (this.entry.firstName = this.contact.firstName),
-        (this.entry.lastName = this.contact.lastName),
-        (this.entry.email = this.contact.email),
-        (this.entry.country = this.contact.country);
+    if (!this.contact) {
+      const uuid = UniqueID().getID();
+      this.entry.id = uuid;
+    } else {
+      this.entry.id = this.contact.id;
+      this.entry.firstName = this.contact.firstName;
+      this.entry.lastName = this.contact.lastName;
+      this.entry.email = this.contact.email;
+      this.entry.country = this.contact.country;
     }
   },
   methods: {
     upsertContact() {
+      console.log(this.entry);
       this.$store.dispatch("upsertContact", this.entry);
       this.close();
+      this.$emit("show-msg");
     },
     resetForm() {
       this.entry.firstName = "";

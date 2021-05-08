@@ -3,7 +3,7 @@
     <li v-for="(contact, index) in contactsSortedByLastName" :key="index">
       <ContactCard
         :contact="contact"
-        @edit-contact="showEditForm(contact.email)"
+        @edit-contact="showEditForm(contact.id)"
       />
     </li>
   </ul>
@@ -12,7 +12,7 @@
     <template v-slot:header>Edit contact</template>
     <template v-slot:main>
       <ContactEdit
-        :contact="editContact(email)"
+        :contact="editContact(id)"
         :edit="true"
         @close="closeModalWindow"
     /></template>
@@ -33,19 +33,9 @@ export default {
   data() {
     return {
       edit: false,
-      email: null,
+      id: null,
     };
   },
-  mounted() {
-    // if (localStorage.contacts) {
-    //   this.contacts = localStorage.contacts
-    // }
-  },
-  // watch: {
-  //   contacts(newContact) {
-  //     localStorage.contacts.push(newContact)
-  //   },
-  // },
   computed: {
     ...mapState(["contacts"]),
     ...mapGetters({
@@ -54,8 +44,8 @@ export default {
     }),
   },
   methods: {
-    showEditForm(email) {
-      this.email = email;
+    showEditForm(id) {
+      this.id = id;
       this.edit = true;
     },
     closeModalWindow() {

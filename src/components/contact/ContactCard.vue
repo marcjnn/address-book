@@ -1,7 +1,9 @@
 <template>
   <article class="contact__item">
     <!-- <p>{{ contactInitials }} - with computed</p> -->
-    <p class="contact__cell">{{ contact.firstName }} {{ contact.lastName }}</p>
+    <p class="contact__cell contact__name">
+      {{ contact.firstName }} {{ contact.lastName }}
+    </p>
     <p class="contact__cell">{{ contact.email }}</p>
     <p class="contact__cell">{{ contact.country }}</p>
 
@@ -15,7 +17,7 @@
         :icon="['fas', 'user-times']"
         class="btn--danger btn--round"
         title="delete contact"
-        @click="deleteContact(contact.email)"
+        @click="deleteContact(contact.id)"
       />
     </div>
   </article>
@@ -31,8 +33,8 @@ export default {
     editContact() {
       this.$emit("edit-contact");
     },
-    deleteContact(email) {
-      this.$store.dispatch("deleteContact", email);
+    deleteContact(id) {
+      this.$store.dispatch("deleteContact", id);
     },
   },
 };
@@ -58,5 +60,9 @@ export default {
 .contact__cell.buttons {
   width: 100%;
   justify-content: space-around;
+}
+
+.contact__name {
+  text-transform: capitalize;
 }
 </style>
