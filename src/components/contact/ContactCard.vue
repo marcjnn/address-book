@@ -52,10 +52,6 @@ export default {
   gap: 12px;
 }
 
-/* .contact__list .contact__item:first-child {
-  border-top: 1px solid grey;
-} */
-
 .contact__cell {
   display: flex;
   justify-content: left;
