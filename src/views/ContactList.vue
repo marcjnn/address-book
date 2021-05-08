@@ -7,7 +7,9 @@
   <BaseModal :open="edit" @close="closeModalWindow">
     <template v-slot:header>Edit contact</template>
     <template v-slot:main>
-      <ContactEdit :contact="contactToEdit" @save-changes="saveChanges"
+      <ContactEdit
+        :contact="contactToEdit(idToEdit)"
+        @save-changes="saveChanges"
     /></template>
   </BaseModal>
 </template>
@@ -56,7 +58,8 @@ export default {
       //   },
       // ],
       edit: false,
-      contactToEdit: null,
+      // contactToEdit: null,
+      idToEdit: null,
     };
   },
   mounted() {
@@ -77,6 +80,8 @@ export default {
     ...mapState(["contacts"]),
     ...mapGetters({
       contactsSortedByLastName: "sortByLastName",
+      // try to change contactToEdit to editContact when method removed
+      contactToEdit: "contactToEdit",
     }),
   },
   methods: {
@@ -92,7 +97,9 @@ export default {
     //   return 0;
     // },
     editContact(id) {
-      this.contactToEdit = this.contacts.find((contact) => contact.id === id);
+      this.idToEdit = id;
+      // this.contactToEdit(id);
+      // this.contactToEdit = this.contacts.find((contact) => contact.id === id);
       console.log(id);
       this.edit = true;
     },

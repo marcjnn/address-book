@@ -1,5 +1,5 @@
 <template>
-  <form action="" method="" @submit.prevent="addNewContact" class="form">
+  <form action="" method="" @submit.prevent="upsertContact" class="form">
     <fieldset class="fieldset">
       <legend class="legend">Personal information</legend>
       <div class="input__container">
@@ -96,17 +96,9 @@ export default {
     }
   },
   methods: {
-    addNewContact() {
+    upsertContact() {
       console.log("adding");
-      // console.log(this.entry.id);
-      // console.log(this.entry.firstName);
-      // console.log(this.entry.lastName);
-      // console.log(this.entry.email);
-      // console.log(this.entry.country);
-      this.$emit("save-changes", this.entry);
-      // console.log(store);
-      // store.commit('addNewContact', this.entry)
-      // console.log(store.state.contacts);
+      this.$store.dispatch("upsertContact", this.entry);
     },
     clearForm() {
       console.log("deleting");

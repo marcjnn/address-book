@@ -35,6 +35,7 @@ export default {
     },
     deleteContact(id) {
       console.log(id);
+      this.$store.dispatch("deleteContact", id);
     },
   },
 };
