@@ -102,7 +102,6 @@
         >
       </div>
     </fieldset>
-    <!-- <p>{{ v$.entry }}</p> -->
   </form>
 </template>
 
@@ -160,7 +159,8 @@ export default {
       if (this.v$.$error) return;
       this.$store.dispatch("upsertContact", this.entry);
       this.close();
-      this.$emit("show-msg");
+      this.$emit("show-notification");
+      // this.resetForm();
     },
     resetForm() {
       this.entry.firstName = "";

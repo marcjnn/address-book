@@ -1,20 +1,29 @@
 <template>
   <h2>Add new contact</h2>
-  <ContactEdit @show-msg="showMessage" />
-  <p v-if="msg" class="msg">Contact has been added</p>
+  <ContactEdit @show-notification="showNotification" />
+  <BaseNotificationBar
+    v-if="notification"
+    @hide-notification="hideNotification"
+    notification="Contact has been added"
+  />
+  <!-- <p class="msg">Contact has been added</p> -->
 </template>
 
 <script>
 import ContactEdit from "@/components/contact/ContactEdit.vue";
+import BaseNotificationBar from "@/components/ui/BaseNotificationBar.vue";
 export default {
   name: "ContactNew",
-  components: { ContactEdit },
+  components: { BaseNotificationBar, ContactEdit },
   data() {
-    return { msg: false };
+    return { notification: false };
   },
   methods: {
-    showMessage() {
-      this.msg = true;
+    showNotification() {
+      this.notification = true;
+    },
+    hideNotification() {
+      this.notification = false;
     },
   },
 };
