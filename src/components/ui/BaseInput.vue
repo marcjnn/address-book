@@ -31,14 +31,5 @@ export default {
 </script>
 
 <style scoped>
-.form__field {
-  padding: 6px;
-  border: 1px solid grey;
-  display: block;
-  width: 80%;
-}
 
-.field__label {
-  display: block;
-}
 </style>
