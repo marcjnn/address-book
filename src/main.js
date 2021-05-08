@@ -6,6 +6,18 @@ import store from "./store";
 import upperFirst from "lodash/upperFirst";
 import camelCase from "lodash/camelCase";
 
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCheck,
+  faUserEdit,
+  faUserTimes,
+  faUserPlus,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(faCheck, faUserEdit, faUserTimes, faUserPlus, faTimes);
+
 // webpack needs to require all of the files with the Base prefix
 const requireComponent = require.context(
   "./components/ui",
@@ -27,4 +39,8 @@ requireComponent.keys().forEach((fileName) => {
 
 // base component global registration finish
 
-app.use(store).use(router).mount("#app");
+app
+  .use(store)
+  .use(router)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .mount("#app");
