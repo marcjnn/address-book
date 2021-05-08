@@ -1,6 +1,6 @@
 <template>
   <ul class="contact__list">
-    <li v-for="(contact, index) in contactsSorted" :key="index">
+    <li v-for="(contact, index) in contactsSortedByLastName" :key="index">
       <ContactCard :contact="contact" @edit-contact="editContact(contact.id)" />
     </li>
   </ul>
@@ -15,6 +15,7 @@
 <script>
 import ContactCard from "@/components/contact/ContactCard.vue";
 import ContactEdit from "@/components/contact/ContactEdit.vue";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "ContactList",
@@ -24,36 +25,36 @@ export default {
   },
   data() {
     return {
-      contacts: [
-        {
-          id: 0,
-          firstName: "Adam",
-          lastName: "Małysz",
-          email: "adam@mailme.com",
-          country: "Poland",
-        },
-        {
-          id: 1,
-          firstName: "Matti",
-          lastName: "Hautamäki",
-          email: "matti@mailme.com",
-          country: "Finland",
-        },
-        {
-          id: 2,
-          firstName: "Simon",
-          lastName: "Ammann",
-          email: "simi@mailme.com",
-          country: "Switzerland",
-        },
-        {
-          id: 3,
-          firstName: "Martin",
-          lastName: "Schmidt",
-          email: "martin@mailme.com",
-          country: "Germany",
-        },
-      ],
+      // contacts: [
+      //   {
+      //     id: 0,
+      //     firstName: "Adam",
+      //     lastName: "Małysz",
+      //     email: "adam@mailme.com",
+      //     country: "Poland",
+      //   },
+      //   {
+      //     id: 1,
+      //     firstName: "Matti",
+      //     lastName: "Hautamäki",
+      //     email: "matti@mailme.com",
+      //     country: "Finland",
+      //   },
+      //   {
+      //     id: 2,
+      //     firstName: "Simon",
+      //     lastName: "Ammann",
+      //     email: "simi@mailme.com",
+      //     country: "Switzerland",
+      //   },
+      //   {
+      //     id: 3,
+      //     firstName: "Martin",
+      //     lastName: "Schmidt",
+      //     email: "martin@mailme.com",
+      //     country: "Germany",
+      //   },
+      // ],
       edit: false,
       contactToEdit: null,
     };
@@ -69,26 +70,27 @@ export default {
   //   },
   // },
   computed: {
-    // contacts() {
-    //   return store.getters.getContacts;
+    // contactsSorted() {
+    //   let newArray = [...this.contacts];
+    //   return newArray.sort(this.sortByLastName);
     // },
-    contactsSorted() {
-      let newArray = [...this.contacts];
-      return newArray.sort(this.sortByLastName);
-    },
+    ...mapState(["contacts"]),
+    ...mapGetters({
+      contactsSortedByLastName: "sortByLastName",
+    }),
   },
   methods: {
-    sortByLastName(a, b) {
-      const nameA = a.lastName.toLowerCase();
-      const nameB = b.lastName.toLowerCase();
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    },
+    // sortByLastName(a, b) {
+    //   const nameA = a.lastName.toLowerCase();
+    //   const nameB = b.lastName.toLowerCase();
+    //   if (nameA < nameB) {
+    //     return -1;
+    //   }
+    //   if (nameA > nameB) {
+    //     return 1;
+    //   }
+    //   return 0;
+    // },
     editContact(id) {
       this.contactToEdit = this.contacts.find((contact) => contact.id === id);
       console.log(id);
