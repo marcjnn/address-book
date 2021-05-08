@@ -1,14 +1,18 @@
 <template>
   <ul class="contact__list">
     <li v-for="(contact, index) in contactsSortedByLastName" :key="index">
-      <ContactCard :contact="contact" @edit-contact="editContact(contact.id)" />
+      <ContactCard
+        :contact="contact"
+        @edit-contact="showEditForm(contact.email)"
+      />
     </li>
   </ul>
-  <BaseModal v-show="edit" @close="closeModalWindow">
+  <!-- !v-show because has to mount only when clicked -->
+  <BaseModal v-if="edit" @close="closeModalWindow">
     <template v-slot:header>Edit contact</template>
     <template v-slot:main>
       <ContactEdit
-        :contact="contactToEdit(idToEdit)"
+        :contact="editContact(email)"
         :edit="true"
         @close="closeModalWindow"
     /></template>
@@ -29,7 +33,7 @@ export default {
   data() {
     return {
       edit: false,
-      idToEdit: null,
+      email: null,
     };
   },
   mounted() {
@@ -46,13 +50,12 @@ export default {
     ...mapState(["contacts"]),
     ...mapGetters({
       contactsSortedByLastName: "sortByLastName",
-      // try to change contactToEdit to editContact when method removed
-      contactToEdit: "contactToEdit",
+      editContact: "contactToEdit",
     }),
   },
   methods: {
-    editContact(id) {
-      this.idToEdit = id;
+    showEditForm(email) {
+      this.email = email;
       this.edit = true;
     },
     closeModalWindow() {

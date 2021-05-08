@@ -15,7 +15,7 @@
         :icon="['fas', 'user-times']"
         class="btn--danger btn--round"
         title="delete contact"
-        @click="deleteContact(contact.id)"
+        @click="deleteContact(contact.email)"
       />
     </div>
   </article>
@@ -30,10 +30,9 @@ export default {
   methods: {
     editContact() {
       this.$emit("edit-contact");
-      // this.edit = true;
     },
-    deleteContact(id) {
-      this.$store.dispatch("deleteContact", id);
+    deleteContact(email) {
+      this.$store.dispatch("deleteContact", email);
     },
   },
 };

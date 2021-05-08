@@ -5,28 +5,24 @@ export default createStore({
   state: {
     contacts: [
       {
-        id: 20,
         firstName: "Adam",
         lastName: "Małysz",
         email: "adam@mailme.com",
         country: "Poland",
       },
       {
-        id: 21,
         firstName: "Matti",
         lastName: "Hautamäki",
         email: "matti@mailme.com",
         country: "Finland",
       },
       {
-        id: 22,
         firstName: "Simon",
         lastName: "Ammann",
         email: "simi@mailme.com",
         country: "Switzerland",
       },
       {
-        id: 23,
         firstName: "Martin",
         lastName: "Schmidt",
         email: "martin@mailme.com",
@@ -38,8 +34,8 @@ export default createStore({
     sortByLastName: (state) => {
       return state.contacts.sort(SortFunctions().sortByLastName);
     },
-    contactToEdit: (state) => (id) => {
-      return state.contacts.find((contact) => contact.id === id);
+    contactToEdit: (state) => (email) => {
+      return state.contacts.find((contact) => contact.email === email);
     },
   },
   mutations: {
@@ -48,13 +44,13 @@ export default createStore({
     },
     EDIT_CONTACT(state, contactToEdit) {
       let contactEditedIndex = state.contacts.findIndex(
-        (contact) => contact.id === contactToEdit.id
+        (contact) => contact.email === contactToEdit.email
       );
       state.contacts.splice(contactEditedIndex, 1, contactToEdit);
     },
-    DELETE_CONTACT(state, id) {
+    DELETE_CONTACT(state, email) {
       let contactEditedIndex = state.contacts.findIndex(
-        (contact) => contact.id === id
+        (contact) => contact.email === email
       );
       state.contacts.splice(contactEditedIndex, 1);
     },
@@ -62,7 +58,7 @@ export default createStore({
   actions: {
     upsertContact({ commit }, incomingContact) {
       let index = this.state.contacts.findIndex(
-        (contact) => contact.id === incomingContact.id
+        (contact) => contact.email === incomingContact.email
       );
       if (index === -1) {
         commit("ADD_CONTACT", incomingContact);
@@ -70,8 +66,8 @@ export default createStore({
         commit("EDIT_CONTACT", incomingContact);
       }
     },
-    deleteContact({ commit }, id) {
-      commit("DELETE_CONTACT", id);
+    deleteContact({ commit }, email) {
+      commit("DELETE_CONTACT", email);
     },
   },
   modules: {},

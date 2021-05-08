@@ -79,14 +79,12 @@ import { getNames } from "country-list";
 export default {
   name: "ContactEdit",
   props: {
-    uuid: { type: Number },
     contact: { type: Object },
     edit: { type: Boolean, default: false },
   },
   data() {
     return {
       entry: {
-        id: null,
         firstName: "",
         lastName: "",
         email: "",
@@ -96,12 +94,8 @@ export default {
     };
   },
   mounted() {
-    if (this.uuid) {
-      this.entry.id = this.uuid;
-    }
     if (this.contact) {
-      (this.entry.id = this.contact.id),
-        (this.entry.firstName = this.contact.firstName),
+      (this.entry.firstName = this.contact.firstName),
         (this.entry.lastName = this.contact.lastName),
         (this.entry.email = this.contact.email),
         (this.entry.country = this.contact.country);
