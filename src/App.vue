@@ -3,13 +3,15 @@
   <main class="page__main">
     <router-view />
   </main>
+  <TheFooter />
 </template>
 <script>
 import "@/assets/style/main.css";
 import TheNavigation from "@/components/layout/TheNavigation.vue";
+import TheFooter from "@/components/layout/TheFooter.vue";
 export default {
   name: "App",
-  components: { TheNavigation },
+  components: { TheNavigation, TheFooter },
 };
 </script>
 <style>
@@ -17,7 +19,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   display: flex;
   flex-direction: column;
@@ -35,6 +36,11 @@ export default {
 .page__main {
   flex-grow: 1;
   padding: 24px;
+}
+
+.page__footer {
+  padding: 12px 24px;
+  text-align: right;
 }
 
 .buttons {
