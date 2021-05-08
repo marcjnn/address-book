@@ -104,6 +104,7 @@ export default {
   methods: {
     upsertContact() {
       this.$store.dispatch("upsertContact", this.entry);
+      this.close();
     },
     resetForm() {
       this.entry.firstName = "";
@@ -137,6 +138,7 @@ export default {
   width: 100%;
   font-size: 22px;
   font-weight: 700;
+  text-align: center;
 }
 .input__container {
   margin: 12px 0;
