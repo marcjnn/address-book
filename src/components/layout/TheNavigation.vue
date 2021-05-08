@@ -11,9 +11,9 @@
           </router-link>
         </li>
         <li>
-          <!-- <router-link :to="{ name: 'ContactNew' }" class="header__link"
+          <router-link :to="{ name: 'ContactNew' }" class="header__link"
             >add new
-          </router-link> -->
+          </router-link>
         </li>
       </ul>
     </nav>
