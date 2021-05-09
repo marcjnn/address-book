@@ -1,6 +1,11 @@
+import { ContactItem } from "@/types/ContactItem";
 import SortFunctions from "@/features/SortFunctions";
 
 export const namespaced = true;
+
+interface State {
+  contacts: ContactItem[];
+}
 
 export const state = {
   contacts: [
@@ -36,17 +41,17 @@ export const state = {
 };
 
 export const mutations = {
-  ADD_CONTACT(state, contactToAdd) {
+  ADD_CONTACT(state: State, contactToAdd: ContactItem) {
     state.contacts.push(contactToAdd);
   },
-  EDIT_CONTACT(state, contactToEdit) {
-    let contactEditedIndex = state.contacts.findIndex(
+  EDIT_CONTACT(state: State, contactToEdit: ContactItem) {
+    const contactEditedIndex = state.contacts.findIndex(
       (contact) => contact.id === contactToEdit.id
     );
     state.contacts.splice(contactEditedIndex, 1, contactToEdit);
   },
-  DELETE_CONTACT(state, id) {
-    let contactEditedIndex = state.contacts.findIndex(
+  DELETE_CONTACT(state: State, id: number) {
+    const contactEditedIndex = state.contacts.findIndex(
       (contact) => contact.id === id
     );
     state.contacts.splice(contactEditedIndex, 1);
@@ -54,9 +59,9 @@ export const mutations = {
 };
 
 export const actions = {
-  upsertContact({ commit, dispatch }, incomingContact) {
+  upsertContact({ commit, dispatch }: any, incomingContact: ContactItem) {
     console.log(incomingContact.id);
-    let index = state.contacts.findIndex(
+    const index = state.contacts.findIndex(
       (contact) => contact.id === incomingContact.id
     );
     console.log(index);
@@ -72,7 +77,7 @@ export const actions = {
       });
     }
   },
-  deleteContact({ commit, dispatch }, id) {
+  deleteContact({ commit, dispatch }: any, id: number) {
     commit("DELETE_CONTACT", id);
     dispatch("notifications/addNotification", "Contact has been deleted", {
       root: true,
@@ -81,10 +86,10 @@ export const actions = {
 };
 
 export const getters = {
-  sortByLastName: (state) => {
+  sortByLastName: (state: State) => {
     return state.contacts.sort(SortFunctions().sortByLastName);
   },
-  contactToEdit: (state) => (id) => {
+  contactToEdit: (state: State) => (id: number) => {
     return state.contacts.find((contact) => contact.id === id);
   },
 };
