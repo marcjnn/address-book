@@ -12,7 +12,8 @@
         class="btn--success btn--round"
         title="edit contact"
         @click="editContact"
-      /><BaseButton
+      />
+      <BaseButton
         :icon="['fas', 'user-times']"
         class="btn--danger btn--round"
         title="delete contact"
@@ -24,8 +25,10 @@
 
 <script>
 import { mapActions } from "vuex";
+import BaseButton from "@/components/ui/BaseButton";
 export default {
   name: "ContactCard",
+  components: { BaseButton },
   props: {
     contact: { type: Object, required: true },
   },

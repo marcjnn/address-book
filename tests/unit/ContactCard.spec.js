@@ -1,5 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 import ContactCard from "@/components/contact/ContactCard";
+import BaseButton from "@/components/ui/BaseButton";
 
 const contact = {
   firstName: "Maurycy",
@@ -26,7 +27,9 @@ describe("ContactList", () => {
       },
     });
 
-    expect(wrapper.find(".contact__item").text()).toEqual(expect.stringContaining("maurycy@hopeta.com"));
+    expect(wrapper.find(".contact__item").text()).toEqual(
+      expect.stringContaining("maurycy@hopeta.com")
+    );
   });
 
   test("Contains contact country", () => {
@@ -36,6 +39,28 @@ describe("ContactList", () => {
       },
     });
 
-    expect(wrapper.find(".contact__item").text()).toEqual(expect.stringContaining("Poland"));
+    expect(wrapper.find(".contact__item").text()).toEqual(
+      expect.stringContaining("Poland")
+    );
+  });
+
+  test("Contains edit and delete", () => {
+    const wrapper = shallowMount(ContactCard, {
+      propsData: {
+        contact,
+      },
+    });
+    const buttons = wrapper.findAllComponents(BaseButton);
+    expect(buttons).toHaveLength(2);
+  });
+
+  test("Edit button triggers edit contact", async () => {
+    const wrapper = shallowMount(ContactCard, {
+      propsData: {
+        contact,
+      },
+    });
+    await wrapper.find(".btn--success").trigger("click");
+    expect(wrapper.emitted()).toHaveProperty("edit-contact");
   });
 });
