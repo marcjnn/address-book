@@ -48,8 +48,8 @@ export default {
     };
   },
   computed: {
-    ...mapState(["contacts", "notifications"]),
-    ...mapGetters({
+    ...mapState(["contacts", ["contacts"], "notifications"]),
+    ...mapGetters("contacts", {
       contactsSortedByLastName: "sortByLastName",
       editContact: "contactToEdit",
     }),

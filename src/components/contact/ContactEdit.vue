@@ -165,7 +165,7 @@ export default {
     console.log(this.notification.id);
   },
   methods: {
-    ...mapActions(["upsertContact", "addNotification"]),
+    ...mapActions("contacts", ["upsertContact", "addNotification"]),
     goToContactList() {
       this.$router.push({
         name: "ContactList",
@@ -175,7 +175,7 @@ export default {
       this.v$.$touch();
       if (this.v$.$error) return;
       this.upsertContact(this.entry);
-      this.addNotification(this.notification);
+      // this.addNotification(this.notification);
       this.$emit("show-notification");
       this.goToContactList();
       this.close();

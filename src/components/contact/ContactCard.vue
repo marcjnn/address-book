@@ -31,7 +31,7 @@ export default {
     contact: { type: Object, required: true },
   },
   methods: {
-    ...mapActions(["deleteContact"]),
+    ...mapActions("contacts", ["deleteContact"]),
     editContact() {
       this.$emit("edit-contact");
     },
