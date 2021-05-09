@@ -71,7 +71,7 @@
         <BaseButton
           type="button"
           :icon="['fas', 'times']"
-          class="btn--danger"
+          class="btn--danger btn--rect"
           @click="resetForm"
           title="reset form"
           >Reset form</BaseButton
@@ -79,7 +79,7 @@
         <BaseButton
           type="submit"
           :icon="['fas', 'check']"
-          class="btn--success"
+          class="btn--success btn--rect"
           title="add contact to address book"
           >Add contact</BaseButton
         >
@@ -88,7 +88,7 @@
         <BaseButton
           type="button"
           :icon="['fas', 'times']"
-          class="btn--danger"
+          class="btn--danger btn--rect"
           @click="close"
           title="reset form"
           >Close without saving</BaseButton
@@ -97,7 +97,7 @@
         <BaseButton
           type="submit"
           :icon="['fas', 'check']"
-          class="btn--success"
+          class="btn--success btn--rect"
           title="add contact to address book"
           >Save changes</BaseButton
         >

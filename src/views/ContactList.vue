@@ -65,6 +65,6 @@ export default {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
 }
 </style>

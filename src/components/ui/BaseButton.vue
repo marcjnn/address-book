@@ -28,6 +28,7 @@ export default {
 
 <style scoped>
 .btn {
+  background-color: transparent;
   display: flex;
   gap: 6px;
   justify-content: center;
@@ -40,7 +41,6 @@ export default {
   color: inherit;
   font-size: 14px;
   font-weight: 700;
-  box-shadow: 0 0 4px 0 rgb(0 0 0 / 10%);
   cursor: pointer;
 }
 
@@ -59,16 +59,22 @@ export default {
 } */
 
 .btn--success {
-  background-color: green;
+  color: #0000cc;
+  border: 2px solid #0000cc;
 }
 
 .btn--danger {
-  background-color: red;
+  color: #c80704;
+  border: 2px solid #c80704;
 }
 
 .btn--round {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+}
+
+.btn--rect:hover {
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 }
 </style>

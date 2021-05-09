@@ -64,6 +64,7 @@ export default {
   display: flex;
   justify-content: center;
   margin: 0 0 12px;
+  color: darkblue;
 }
 
 .modal__closeBtn {

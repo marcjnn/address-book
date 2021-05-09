@@ -3,7 +3,14 @@
     <p class="contact__cell contact__name">
       {{ getFullName }}
     </p>
-    <p class="contact__cell">{{ contact.email }}</p>
+    <p class="contact__cell">
+      <a
+        :href="`mailto:${contact.email}`"
+        class="contact__link"
+        :title="`send email to ${getFullName}`"
+        >{{ contact.email }}</a
+      >
+    </p>
     <p class="contact__cell">{{ contact.country }}</p>
 
     <div class="contact__cell buttons">
@@ -25,10 +32,10 @@
 
 <script>
 import { mapActions } from "vuex";
-import BaseButton from "@/components/ui/BaseButton";
+// import BaseButton from "@/components/ui/BaseButton";
 export default {
   name: "ContactCard",
-  components: { BaseButton },
+  // components: { BaseButton },
   props: {
     contact: { type: Object, required: true },
   },
@@ -56,6 +63,11 @@ export default {
   gap: 12px;
 }
 
+.contact__item:hover {
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+  /* transform: scale(1.1); */
+}
+
 .contact__cell {
   display: flex;
   justify-content: left;
@@ -69,5 +81,12 @@ export default {
 
 .contact__name {
   text-transform: capitalize;
+  font-weight: 700;
+  color: darkblue;
+}
+
+.contact__link {
+  text-decoration: none;
+  color: inherit;
 }
 </style>

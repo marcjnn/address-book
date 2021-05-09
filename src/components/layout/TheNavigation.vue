@@ -5,12 +5,12 @@
     >
     <nav>
       <ul class="header__nav">
-        <li>
+        <li class="nav__item">
           <router-link :to="{ name: 'ContactList' }" class="header__link"
             >see list
           </router-link>
         </li>
-        <li>
+        <li class="nav__item">
           <router-link :to="{ name: 'ContactNew' }" class="header__link"
             >add new
           </router-link>
@@ -35,5 +35,14 @@ export default {
 .header__link {
   text-decoration: none;
   color: darkblue;
+}
+
+.nav__item {
+  padding: 6px;
+  border: 1px solid darkblue;
+}
+
+.nav__item:hover {
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.35);
 }
 </style>
