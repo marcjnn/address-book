@@ -5,11 +5,13 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, PropType } from "vue";
+import { Notification } from "@/types/Notification";
 import { mapActions } from "vuex";
-export default {
+export default defineComponent({
   props: {
     notification: {
-      type: Object,
+      type: Object as PropType<Notification>,
       required: true,
     },
   },
@@ -28,7 +30,7 @@ export default {
     clearTimeout(this.timeout);
   },
   methods: mapActions("notifications", ["deleteNotification"]),
-};
+});
 </script>
 
 <style scoped>

@@ -10,28 +10,28 @@ interface State {
 export const state = {
   contacts: [
     {
-      id: 21,
+      id: "21",
       firstName: "Adam",
       lastName: "Małysz",
       email: "adam@mailme.com",
       country: "Poland",
     },
     {
-      id: 22,
+      id: "22",
       firstName: "Matti",
       lastName: "Hautamäki",
       email: "matti@mailme.com",
       country: "Finland",
     },
     {
-      id: 23,
+      id: "23",
       firstName: "Simon",
       lastName: "Ammann",
       email: "simi@mailme.com",
       country: "Switzerland",
     },
     {
-      id: 24,
+      id: "24",
       firstName: "Martin",
       lastName: "Schmidt",
       email: "martin@mailme.com",
@@ -50,7 +50,7 @@ export const mutations = {
     );
     state.contacts.splice(contactEditedIndex, 1, contactToEdit);
   },
-  DELETE_CONTACT(state: State, id: number) {
+  DELETE_CONTACT(state: State, id: string) {
     const contactEditedIndex = state.contacts.findIndex(
       (contact) => contact.id === id
     );
@@ -77,7 +77,7 @@ export const actions = {
       });
     }
   },
-  deleteContact({ commit, dispatch }: any, id: number) {
+  deleteContact({ commit, dispatch }: any, id: string) {
     commit("DELETE_CONTACT", id);
     dispatch("notifications/addNotification", "Contact has been deleted", {
       root: true,
@@ -89,7 +89,7 @@ export const getters = {
   sortByLastName: (state: State) => {
     return state.contacts.sort(SortFunctions().sortByLastName);
   },
-  contactToEdit: (state: State) => (id: number) => {
+  contactToEdit: (state: State) => (id: string) => {
     return state.contacts.find((contact) => contact.id === id);
   },
 };

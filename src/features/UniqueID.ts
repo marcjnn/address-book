@@ -1,12 +1,5 @@
-let UUID = 0;
+import { v4 as uuidv4 } from "uuid";
 
 export default function UniqueID() {
-  const getID = () => {
-    UUID++;
-    return UUID;
-  };
-
-  return {
-    getID,
-  };
+  return uuidv4();
 }

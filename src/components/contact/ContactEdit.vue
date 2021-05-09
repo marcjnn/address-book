@@ -107,16 +107,18 @@
 </template>
 
 <script lang="ts">
+import { defineComponent, PropType } from "vue";
 import { ContactItem } from "@/types/ContactItem";
 import { getNames } from "country-list";
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
 import { mapActions } from "vuex";
 import UniqueID from "@/features/UniqueID";
-export default {
+
+export default defineComponent({
   name: "ContactEdit",
   props: {
-    contact: { type: Object },
+    contact: { type: Object as PropType<ContactItem> },
     edit: { type: Boolean, default: false },
   },
   setup() {
@@ -125,7 +127,7 @@ export default {
   data() {
     return {
       entry: {
-        id: 0,
+        id: "",
         firstName: "",
         lastName: "",
         email: "",
@@ -146,7 +148,7 @@ export default {
   },
   mounted() {
     if (!this.contact) {
-      const uuid = UniqueID().getID();
+      const uuid = UniqueID();
       this.entry.id = uuid;
     } else {
       this.entry.id = this.contact.id;
@@ -180,7 +182,7 @@ export default {
       this.$emit("close");
     },
   },
-};
+});
 </script>
 
 <style scoped>

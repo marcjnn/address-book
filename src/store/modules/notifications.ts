@@ -12,7 +12,7 @@ export const mutations = {
   ADD_NOTIFICATION(state: State, notification: Notification) {
     state.notifications.push(notification);
   },
-  DELETE_NOTIFICATION(state: State, id: number) {
+  DELETE_NOTIFICATION(state: State, id: string) {
     console.log(id);
     const notificationIndex = state.notifications.findIndex(
       (notification) => notification.id === id
@@ -23,12 +23,12 @@ export const mutations = {
 export const actions = {
   addNotification({ commit }: any, notification: Notification) {
     const newNotification = {
-      id: UniqueID().getID(),
+      id: UniqueID(),
       msg: notification,
     };
     commit("ADD_NOTIFICATION", newNotification);
   },
-  deleteNotification({ commit }: any, id: number) {
+  deleteNotification({ commit }: any, id: string) {
     commit("DELETE_NOTIFICATION", id);
   },
 };
