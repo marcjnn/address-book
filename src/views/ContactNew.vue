@@ -3,12 +3,13 @@
   <ContactEdit />
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import ContactEdit from "@/components/contact/ContactEdit.vue";
-export default {
+export default defineComponent({
   name: "ContactNew",
   components: { ContactEdit },
-};
+});
 </script>
 
 <style scoped>

@@ -24,7 +24,8 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "BaseSelect",
   inheritAttrs: false,
   props: {
@@ -45,7 +46,7 @@ export default {
       default: false,
     },
   },
-};
+});
 </script>
 
 <style scoped>

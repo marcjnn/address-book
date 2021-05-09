@@ -25,12 +25,13 @@
   </BaseModal>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import ContactCard from "@/components/contact/ContactCard.vue";
 import ContactEdit from "@/components/contact/ContactEdit.vue";
 import { mapState, mapGetters } from "vuex";
 
-export default {
+export default defineComponent({
   name: "ContactList",
   components: {
     ContactCard,
@@ -39,18 +40,18 @@ export default {
   data() {
     return {
       edit: false,
-      id: null,
+      id: "",
     };
   },
   computed: {
-    ...mapState(["contacts", ["contacts"], "notifications", ["notifications"]]),
+    ...mapState(["notifications", ["notifications"]]),
     ...mapGetters("contacts", {
       contactsSortedByLastName: "sortByLastName",
       editContact: "contactToEdit",
     }),
   },
   methods: {
-    showEditForm(id) {
+    showEditForm(id: string) {
       this.id = id;
       this.edit = true;
     },
@@ -58,7 +59,7 @@ export default {
       this.edit = false;
     },
   },
-};
+});
 </script>
 <style scoped>
 .contact__list {

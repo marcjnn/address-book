@@ -30,17 +30,17 @@
   </article>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
 import { mapActions } from "vuex";
-// import BaseButton from "@/components/ui/BaseButton";
-export default {
+import { ContactItem } from "@/types/ContactItem";
+export default defineComponent({
   name: "ContactCard",
-  // components: { BaseButton },
   props: {
-    contact: { type: Object, required: true },
+    contact: { type: Object as PropType<ContactItem>, required: true },
   },
   computed: {
-    getFullName() {
+    getFullName(): string {
       return `${this.contact.firstName} ${this.contact.lastName}`;
     },
   },
@@ -50,7 +50,7 @@ export default {
       this.$emit("edit-contact");
     },
   },
-};
+});
 </script>
 
 <style scoped>
@@ -65,7 +65,6 @@ export default {
 
 .contact__item:hover {
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
-  /* transform: scale(1.1); */
 }
 
 .contact__cell {
