@@ -1,6 +1,6 @@
 <template>
-  <div class="notification-bar">
-    <p>{{ notification }}</p>
+  <div class="notification__bar">
+    <p class="notification__text">{{ notification.msg }}</p>
   </div>
 </template>
 
@@ -16,19 +16,24 @@ export default {
   mounted() {
     this.timeout = setTimeout(
       () => this.deleteNotification(this.notification.id),
-      4000
+      3000
     );
   },
   beforeUnmount() {
     clearTimeout(this.timeout);
   },
-  methods: mapActions(["deleteNotification"]),
+  methods: mapActions("notifications", ["deleteNotification"]),
 };
 </script>
 
 <style scoped>
-.notification-bar {
+.notification__bar {
   margin: 24px 0;
   text-align: center;
+}
+
+.notification__text {
+  color: green;
+  font-size: 18px;
 }
 </style>
