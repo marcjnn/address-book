@@ -13,7 +13,6 @@ export const mutations = {
     state.notifications.push(notification);
   },
   DELETE_NOTIFICATION(state: State, id: string) {
-    console.log(id);
     const notificationIndex = state.notifications.findIndex(
       (notification) => notification.id === id
     );

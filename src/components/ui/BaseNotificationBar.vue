@@ -23,7 +23,7 @@ export default defineComponent({
   mounted() {
     this.timeout = setTimeout(
       () => this.deleteNotification(this.notification.id),
-      3000
+      2000
     );
   },
   beforeUnmount() {

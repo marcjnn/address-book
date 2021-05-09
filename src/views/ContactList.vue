@@ -1,4 +1,13 @@
 <template>
+  <div v-if="!contactsSortedByLastName.length">
+    <p>
+      Your address book is empty - click
+      <router-link :to="{ name: 'ContactNew' }" class="main__link"
+        >here</router-link
+      >
+      to add a new contact
+    </p>
+  </div>
   <ul class="contact__list">
     <li v-for="(contact, index) in contactsSortedByLastName" :key="index">
       <ContactCard
@@ -7,9 +16,8 @@
       />
     </li>
   </ul>
-  <!-- namespaced modules => notifications.notifications -->
-  <ul v-if="notifications.notifications.length" id="not-visible-list">
-    <li v-for="n in notifications.notifications" :key="n.id">
+  <ul v-if="notifications.length" id="not-visible-list">
+    <li v-for="n in notifications" :key="n.id">
       <BaseNotificationBar :notification="n" />
     </li>
   </ul>
@@ -44,7 +52,9 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapState(["notifications", ["notifications"]]),
+    ...mapState({
+      notifications: (state: any) => state.notifications.notifications,
+    }),
     ...mapGetters("contacts", {
       contactsSortedByLastName: "sortByLastName",
       editContact: "contactToEdit",
@@ -67,5 +77,9 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.main__link {
+  color: darkblue;
 }
 </style>
