@@ -5,7 +5,6 @@ export const namespaced = true;
 export const state = { notifications: [] };
 export const mutations = {
   ADD_NOTIFICATION(state, notification) {
-    console.log("im here - mutations");
     state.notifications.push(notification);
   },
   DELETE_NOTIFICATION(state, id) {
@@ -18,7 +17,6 @@ export const mutations = {
 };
 export const actions = {
   addNotification({ commit }, notification) {
-    console.log("im here - actions");
     let newNotification = {
       id: UniqueID().getID(),
       msg: notification,
