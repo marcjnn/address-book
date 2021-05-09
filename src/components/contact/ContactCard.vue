@@ -1,6 +1,5 @@
 <template>
   <article class="contact__item">
-    <!-- <p>{{ contactInitials }} - with computed</p> -->
     <p class="contact__cell contact__name">
       {{ contact.firstName }} {{ contact.lastName }}
     </p>
@@ -44,7 +43,6 @@ export default {
   padding: 12px;
   border: 1px solid #d8d8d8;
   border-collapse: collapse;
-  /* border-top: none; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;

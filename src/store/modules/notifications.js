@@ -25,13 +25,6 @@ export const actions = {
     };
     commit("ADD_NOTIFICATION", newNotification);
   },
-  // addNotification({ commit }, notification) {
-  //   console.log("im here - actions");
-  //   let index = this.state.notifications.findIndex(
-  //     (n) => n.id === notification.id
-  //   );
-  //   if (index === -1) commit("ADD_NOTIFICATION", notification);
-  // },
   deleteNotification({ commit }, id) {
     commit("DELETE_NOTIFICATION", id);
   },

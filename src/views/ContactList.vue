@@ -13,7 +13,7 @@
       <BaseNotificationBar :notification="n" />
     </li>
   </ul>
-  <!-- !v-show because has to mount only when clicked -->
+  <!-- !v-show so mounts only when clicked -->
   <BaseModal v-if="edit" @close="closeModalWindow">
     <template #header>Edit contact</template>
     <template #main>
@@ -66,6 +66,5 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2px;
-  /* align-items: center; */
 }
 </style>

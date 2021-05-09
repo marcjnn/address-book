@@ -7,14 +7,8 @@ import * as notifications from "@/store/modules/notifications.js";
 export default createStore({
   state: {},
   getters: {},
-  mutations: {
-    // contacts
-    // notifications
-  },
-  actions: {
-    // contact
-    // notification
-  },
+  mutations: {},
+  actions: {},
   modules: { contacts, notifications },
   plugins: [createPersistedState()],
 });

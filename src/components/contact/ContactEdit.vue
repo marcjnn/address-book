@@ -131,10 +131,6 @@ export default {
         country: "",
       },
       countries: getNames(),
-      notification: {
-        id: 0,
-        msg: "",
-      },
     };
   },
   validations() {
@@ -148,21 +144,16 @@ export default {
     };
   },
   mounted() {
-    const uuidN = UniqueID().getID();
-    this.notification.id = uuidN;
     if (!this.contact) {
       const uuid = UniqueID().getID();
       this.entry.id = uuid;
-      this.notification.msg = "Contact has been added";
     } else {
       this.entry.id = this.contact.id;
       this.entry.firstName = this.contact.firstName;
       this.entry.lastName = this.contact.lastName;
       this.entry.email = this.contact.email;
       this.entry.country = this.contact.country;
-      this.notification.msg = "Changes have been saved";
     }
-    console.log(this.notification.id);
   },
   methods: {
     ...mapActions("contacts", ["upsertContact", "addNotification"]),
@@ -175,20 +166,9 @@ export default {
       this.v$.$touch();
       if (this.v$.$error) return;
       this.upsertContact(this.entry);
-      // this.addNotification(this.notification);
-      this.$emit("show-notification");
       this.goToContactList();
       this.close();
     },
-    // upsertContact() {
-    //   this.v$.$touch();
-    //   if (this.v$.$error) return;
-    //   this.$store.dispatch("upsertContact", this.entry).then(() => {
-    //     this.resetForm();
-    //   });
-    //   this.close();
-    //   this.$emit("show-notification");
-    // },
     resetForm() {
       this.entry.firstName = "";
       this.entry.lastName = "";
@@ -217,7 +197,6 @@ export default {
 .legend {
   margin-top: 20px;
   margin-bottom: -20px;
-  /* float: left; */
   width: 100%;
   font-size: 22px;
   font-weight: 700;
@@ -225,8 +204,6 @@ export default {
 }
 .input__container {
   margin: 12px 0;
-  /* display: flex;
-  flex-direction: column; */
   text-align: left;
   width: 50%;
 }
