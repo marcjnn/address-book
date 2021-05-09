@@ -20,7 +20,7 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "BaseModal",
   props: {

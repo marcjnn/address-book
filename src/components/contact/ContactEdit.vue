@@ -106,7 +106,8 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
+import { ContactItem } from "@/types/ContactItem";
 import { getNames } from "country-list";
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
@@ -124,12 +125,12 @@ export default {
   data() {
     return {
       entry: {
-        id: null,
+        id: 0,
         firstName: "",
         lastName: "",
         email: "",
         country: "",
-      },
+      } as ContactItem,
       countries: getNames(),
     };
   },

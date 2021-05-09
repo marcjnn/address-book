@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { mapActions } from "vuex";
 export default {
   props: {
@@ -12,6 +12,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      timeout: 0,
+    };
   },
   mounted() {
     this.timeout = setTimeout(

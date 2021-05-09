@@ -23,7 +23,7 @@
   </select>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "BaseSelect",
   inheritAttrs: false,
