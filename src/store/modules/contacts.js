@@ -55,9 +55,11 @@ export const mutations = {
 
 export const actions = {
   upsertContact({ commit, dispatch }, incomingContact) {
+    console.log(incomingContact.id);
     let index = state.contacts.findIndex(
       (contact) => contact.id === incomingContact.id
     );
+    console.log(index);
     if (index === -1) {
       commit("ADD_CONTACT", incomingContact);
       dispatch("notifications/addNotification", "New contact has been added", {

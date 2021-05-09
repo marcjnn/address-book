@@ -8,7 +8,7 @@
     </li>
   </ul>
   <!-- namespaced modules => notifications.notifications -->
-  <ul v-if="notifications.notifications.length">
+  <ul v-if="notifications.notifications.length" id="not-visible-list">
     <li v-for="n in notifications.notifications" :key="n.id">
       <BaseNotificationBar :notification="n" />
     </li>

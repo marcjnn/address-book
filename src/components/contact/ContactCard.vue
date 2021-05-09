@@ -1,7 +1,7 @@
 <template>
   <article class="contact__item">
     <p class="contact__cell contact__name">
-      {{ contact.firstName }} {{ contact.lastName }}
+      {{ getFullName }}
     </p>
     <p class="contact__cell">{{ contact.email }}</p>
     <p class="contact__cell">{{ contact.country }}</p>
@@ -28,6 +28,11 @@ export default {
   name: "ContactCard",
   props: {
     contact: { type: Object, required: true },
+  },
+  computed: {
+    getFullName() {
+      return `${this.contact.firstName} ${this.contact.lastName}`;
+    },
   },
   methods: {
     ...mapActions("contacts", ["deleteContact"]),
