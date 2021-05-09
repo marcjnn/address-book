@@ -34,6 +34,7 @@ export default createStore({
         country: "Germany",
       },
     ],
+    notifications: [],
   },
   getters: {
     sortByLastName: (state) => {
@@ -44,6 +45,7 @@ export default createStore({
     },
   },
   mutations: {
+    // contacts
     ADD_CONTACT(state, contactToAdd) {
       state.contacts.push(contactToAdd);
     },
@@ -59,8 +61,20 @@ export default createStore({
       );
       state.contacts.splice(contactEditedIndex, 1);
     },
+    // notifications
+    ADD_NOTIFICATION(state, notification) {
+      console.log("im here - mutations");
+      state.notifications.push(notification);
+    },
+    DELETE_NOTIFICATION(state, id) {
+      let notificationIndex = state.notifications.findIndex(
+        (notification) => notification.id === id
+      );
+      state.notifications.splice(notificationIndex, 1);
+    },
   },
   actions: {
+    // contact
     upsertContact({ commit }, incomingContact) {
       let index = this.state.contacts.findIndex(
         (contact) => contact.id === incomingContact.id
@@ -73,6 +87,17 @@ export default createStore({
     },
     deleteContact({ commit }, id) {
       commit("DELETE_CONTACT", id);
+    },
+    // notification
+    addNotification({ commit }, notification) {
+      console.log("im here - actions");
+      let index = this.state.notifications.findIndex(
+        (n) => n.id === notification.id
+      );
+      if (index === -1) commit("ADD_NOTIFICATION", notification);
+    },
+    deleteNotification({ commit }, id) {
+      commit("DELETE_NOTIFICATION", id);
     },
   },
   modules: {},

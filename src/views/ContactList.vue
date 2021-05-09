@@ -7,6 +7,15 @@
       />
     </li>
   </ul>
+  <ul>
+    <li v-for="notification in notifications" :key="notification.id">
+      <BaseNotificationBar
+        v-if="notification"
+        @hide-notification="hideNotification"
+        :notification="notification"
+      />
+    </li>
+  </ul>
   <!-- !v-show because has to mount only when clicked -->
   <BaseModal v-if="edit" @close="closeModalWindow">
     <template #header>Edit contact</template>
@@ -34,10 +43,12 @@ export default {
     return {
       edit: false,
       id: null,
+      userId: null,
+      notification: "",
     };
   },
   computed: {
-    ...mapState(["contacts"]),
+    ...mapState(["contacts", "notifications"]),
     ...mapGetters({
       contactsSortedByLastName: "sortByLastName",
       editContact: "contactToEdit",
@@ -50,6 +61,13 @@ export default {
     },
     closeModalWindow() {
       this.edit = false;
+    },
+    showNotification() {
+      this.notification.is = true;
+    },
+    hideNotification() {
+      // this.notification.is = false;
+      console.log("hiding");
     },
   },
 };

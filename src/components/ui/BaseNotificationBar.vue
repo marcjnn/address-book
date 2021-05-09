@@ -5,19 +5,24 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   props: {
     notification: {
-      type: String,
+      type: Object,
       required: true,
     },
   },
   mounted() {
-    this.timeout = setTimeout(() => this.$emit("hide-notification"), 3000);
+    this.timeout = setTimeout(
+      () => this.deleteNotification(this.notification.id),
+      4000
+    );
   },
   beforeUnmount() {
     clearTimeout(this.timeout);
   },
+  methods: mapActions(["deleteNotification"]),
 };
 </script>
 

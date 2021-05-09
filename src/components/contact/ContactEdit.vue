@@ -1,5 +1,5 @@
 <template>
-  <form action="" method="" @submit.prevent="upsertContact" class="form">
+  <form action="" method="" @submit.prevent="onSubmit" class="form">
     <fieldset class="fieldset">
       <legend class="legend">Personal information</legend>
       <div class="input__container">
@@ -93,6 +93,7 @@
           title="reset form"
           >Close without saving</BaseButton
         >
+
         <BaseButton
           type="submit"
           :icon="['fas', 'check']"
@@ -109,6 +110,7 @@
 import { getNames } from "country-list";
 import useVuelidate from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
+import { mapActions } from "vuex";
 import UniqueID from "@/features/UniqueID";
 export default {
   name: "ContactEdit",
@@ -129,6 +131,10 @@ export default {
         country: "",
       },
       countries: getNames(),
+      notification: {
+        id: 0,
+        msg: "",
+      },
     };
   },
   validations() {
@@ -142,26 +148,47 @@ export default {
     };
   },
   mounted() {
+    const uuidN = UniqueID().getID();
+    this.notification.id = uuidN;
     if (!this.contact) {
       const uuid = UniqueID().getID();
       this.entry.id = uuid;
+      this.notification.msg = "Contact has been added";
     } else {
       this.entry.id = this.contact.id;
       this.entry.firstName = this.contact.firstName;
       this.entry.lastName = this.contact.lastName;
       this.entry.email = this.contact.email;
       this.entry.country = this.contact.country;
+      this.notification.msg = "Changes have been saved";
     }
+    console.log(this.notification.id);
   },
   methods: {
-    upsertContact() {
+    ...mapActions(["upsertContact", "addNotification"]),
+    goToContactList() {
+      this.$router.push({
+        name: "ContactList",
+      });
+    },
+    onSubmit() {
       this.v$.$touch();
       if (this.v$.$error) return;
-      this.$store.dispatch("upsertContact", this.entry);
-      this.close();
+      this.upsertContact(this.entry);
+      this.addNotification(this.notification);
       this.$emit("show-notification");
-      // this.resetForm();
+      this.goToContactList();
+      this.close();
     },
+    // upsertContact() {
+    //   this.v$.$touch();
+    //   if (this.v$.$error) return;
+    //   this.$store.dispatch("upsertContact", this.entry).then(() => {
+    //     this.resetForm();
+    //   });
+    //   this.close();
+    //   this.$emit("show-notification");
+    // },
     resetForm() {
       this.entry.firstName = "";
       this.entry.lastName = "";

@@ -24,17 +24,16 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "ContactCard",
   props: {
     contact: { type: Object, required: true },
   },
   methods: {
+    ...mapActions(["deleteContact"]),
     editContact() {
       this.$emit("edit-contact");
-    },
-    deleteContact(id) {
-      this.$store.dispatch("deleteContact", id);
     },
   },
 };
