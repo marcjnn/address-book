@@ -58,8 +58,8 @@ export default defineComponent({
   padding: 12px;
   border: 1px solid var(--colorBorder);
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  justify-items: center;
+  gap: 6px;
 }
 
 .contact__item:hover {
@@ -74,7 +74,9 @@ export default defineComponent({
 
 .contact__cell.buttons {
   width: 100%;
-  justify-content: space-around;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 48px;
 }
 
 .contact__name {
@@ -86,5 +88,19 @@ export default defineComponent({
 .contact__link {
   text-decoration: none;
   color: inherit;
+}
+
+@media all and (min-width: 768px) {
+  .contact__item {
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    gap: 12px;
+  }
+  .contact__cell.buttons {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0;
+  }
 }
 </style>

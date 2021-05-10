@@ -12,9 +12,4 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.msg {
-  margin-top: 24px;
-  text-align: center;
-}
-</style>
+<style scoped></style>

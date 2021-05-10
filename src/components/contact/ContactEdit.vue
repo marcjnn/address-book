@@ -201,14 +201,15 @@ export default defineComponent({
   margin-top: 20px;
   margin-bottom: -20px;
   width: 100%;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 500;
   text-align: center;
 }
+
 .input__container {
   margin: 12px 0;
   text-align: left;
-  width: 50%;
+  width: 100%;
 }
 
 .input__error {
@@ -218,5 +219,22 @@ export default defineComponent({
 .fieldset .buttons {
   width: 100%;
   margin-top: 12px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media all and (min-width: 768px) {
+  .legend {
+    font-size: 22px;
+  }
+
+  .input__container {
+    width: 50%;
+  }
+
+  .fieldset .buttons {
+    flex-direction: row;
+    gap: 0;
+  }
 }
 </style>

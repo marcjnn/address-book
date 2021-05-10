@@ -82,4 +82,10 @@ export default defineComponent({
 .main__link {
   color: var(--colorTextTitle);
 }
+
+@media all and (min-width: 768px) {
+  .contact__list {
+    gap: 12px;
+  }
+}
 </style>

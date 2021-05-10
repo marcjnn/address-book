@@ -2,7 +2,7 @@
   <section class="modal__container" @click.self="closeModalWindow">
     <div class="modal">
       <header class="modal__header">
-        <h2>
+        <h2 class="modal__title">
           <slot name="header"></slot>
         </h2>
         <div class="modal__closeBtn">
@@ -68,10 +68,20 @@ export default defineComponent({
   color: var(--colorTextTitle);
 }
 
+.modal__title {
+  font-size: 18px;
+}
+
 .modal__closeBtn {
   position: absolute;
   right: 24px;
   top: 50%;
   transform: translate(0, -50%);
+}
+
+@media all and (min-width: 768px) {
+  .modal__title {
+    font-size: 24px;
+  }
 }
 </style>

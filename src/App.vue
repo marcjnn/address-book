@@ -29,8 +29,10 @@ export default {
   background-color: var(--colorBackground);
   padding: 24px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
 .page__main {
@@ -39,25 +41,39 @@ export default {
 }
 
 .page__footer {
+  font-size: 14px;
   padding: 12px 24px;
-  text-align: right;
+  text-align: center;
 }
 
 .buttons {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* gap: 12px; */
 }
 
 .form__field {
   padding: 6px;
   border: 1px solid var(--colorBorder);
   display: block;
-  width: 80%;
+  width: 100%;
 }
 
 .field__label {
   display: block;
+}
+
+@media all and (min-width: 768px) {
+  .page__header {
+    flex-direction: row;
+  }
+  .page__footer {
+    font-size: 16px;
+    text-align: right;
+  }
+
+  .form__field {
+    width: 80%;
+  }
 }
 </style>
