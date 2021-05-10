@@ -1,6 +1,5 @@
 <template>
   <article class="contact__item">
-    <p>{{ contact.id }}</p>
     <p class="contact__cell contact__name">
       {{ getFullName }}
     </p>

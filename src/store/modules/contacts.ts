@@ -32,19 +32,9 @@ export const contacts = {
       { state, commit, dispatch }: any,
       incomingContact: ContactItem
     ) {
-      debugger;
-      console.log(incomingContact.id);
-
-      const mappedIds = state.contacts.map(
-        (contact: ContactItem) => contact.id
-      );
-      console.log();
-      console.log(mappedIds);
-
       const index = state.contacts.findIndex(
         (contact: ContactItem) => contact.id === incomingContact.id
       );
-      console.log(index);
 
       if (index === -1) {
         commit("ADD_CONTACT", incomingContact);
