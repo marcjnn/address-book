@@ -158,6 +158,7 @@ export default defineComponent({
       this.entry.country = this.contact.country;
     }
   },
+  emits: ["close"],
   methods: {
     ...mapActions("contacts", ["upsertContact", "addNotification"]),
     goToContactList() {

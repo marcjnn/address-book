@@ -39,6 +39,7 @@ export default defineComponent({
   props: {
     contact: { type: Object as PropType<ContactItem>, required: true },
   },
+  emits: ["edit-contact"],
   computed: {
     getFullName(): string {
       return `${this.contact.firstName} ${this.contact.lastName}`;
