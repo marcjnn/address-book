@@ -22,7 +22,7 @@ Created with Vue 3 and written in TypeScript:
 
 ## How to set up the project?
 
-### Instals dependencies
+### Installs dependencies
 
 `npm install`
 
