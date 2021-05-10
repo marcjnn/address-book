@@ -13,25 +13,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { formFieldMixin } from "@/mixins/formFieldMixin";
 export default defineComponent({
   name: "BaseInput",
-  inheritAttrs: false,
+  mixins: [formFieldMixin],
   props: {
-    label: {
-      type: String,
-      default: "",
-    },
     placeholder: {
       type: String,
       default: "",
-    },
-    modelValue: {
-      type: [String, Number],
-      default: "",
-    },
-    isRequired: {
-      type: Boolean,
-      default: false,
     },
   },
 });

@@ -25,25 +25,14 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { formFieldMixin } from "@/mixins/formFieldMixin";
 export default defineComponent({
   name: "BaseSelect",
-  inheritAttrs: false,
+  mixins: [formFieldMixin],
   props: {
-    label: {
-      type: String,
-      default: "",
-    },
-    modelValue: {
-      type: [String, Number],
-      default: "",
-    },
     options: {
       type: Array,
       required: true,
-    },
-    isRequired: {
-      type: Boolean,
-      default: false,
     },
   },
 });
