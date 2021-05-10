@@ -1,6 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
 import ContactCard from "@/components/contact/ContactCard";
-// import BaseButton from "@/components/ui/BaseButton";
 
 const contact = {
   firstName: "Maurycy",
