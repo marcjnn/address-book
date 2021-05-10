@@ -7,27 +7,30 @@ interface State {
   notifications: Notification[];
 }
 
-export const state = { notifications: [] };
-export const mutations = {
-  ADD_NOTIFICATION(state: State, notification: Notification) {
-    state.notifications.push(notification);
+export const notifications = {
+  namespaced: true,
+  state: { notifications: [] },
+  mutations: {
+    ADD_NOTIFICATION(state: State, notification: Notification) {
+      state.notifications.push(notification);
+    },
+    DELETE_NOTIFICATION(state: State, id: string) {
+      const notificationIndex = state.notifications.findIndex(
+        (notification) => notification.id === id
+      );
+      state.notifications.splice(notificationIndex, 1);
+    },
   },
-  DELETE_NOTIFICATION(state: State, id: string) {
-    const notificationIndex = state.notifications.findIndex(
-      (notification) => notification.id === id
-    );
-    state.notifications.splice(notificationIndex, 1);
-  },
-};
-export const actions = {
-  addNotification({ commit }: any, notification: Notification) {
-    const newNotification = {
-      id: UniqueID(),
-      msg: notification,
-    };
-    commit("ADD_NOTIFICATION", newNotification);
-  },
-  deleteNotification({ commit }: any, id: string) {
-    commit("DELETE_NOTIFICATION", id);
+  actions: {
+    addNotification({ commit }: any, notification: Notification) {
+      const newNotification = {
+        id: UniqueID(),
+        msg: notification,
+      };
+      commit("ADD_NOTIFICATION", newNotification);
+    },
+    deleteNotification({ commit }: any, id: string) {
+      commit("DELETE_NOTIFICATION", id);
+    },
   },
 };
