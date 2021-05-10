@@ -22,6 +22,15 @@ Created with Vue 3 and written in TypeScript:
 
 ## How to set up the project?
 
+Please note, you will need to have installed the vue-cli to run this project:
+
+```
+npm install -g @vue/cli
+# OR
+yarn global add @vue/cli
+```
+Yo will also need Node 10 at least and npm 6 with the latest updates.
+
 ### Installs dependencies
 
 `npm install`
