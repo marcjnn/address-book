@@ -56,8 +56,7 @@ export default defineComponent({
 <style scoped>
 .contact__item {
   padding: 12px;
-  border: 1px solid #d8d8d8;
-  border-collapse: collapse;
+  border: 1px solid var(--colorBorder);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
@@ -81,7 +80,7 @@ export default defineComponent({
 .contact__name {
   text-transform: capitalize;
   font-weight: 700;
-  color: darkblue;
+  color: var(--colorTextTitle);
 }
 
 .contact__link {

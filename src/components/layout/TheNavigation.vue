@@ -35,12 +35,12 @@ export default defineComponent({
 
 .header__link {
   text-decoration: none;
-  color: darkblue;
+  color: var(--colorTextTitle);
 }
 
 .nav__item {
   padding: 6px;
-  border: 1px solid darkblue;
+  border: 1px solid var(--colorTextTitle);
 }
 
 .nav__item:hover {

@@ -40,7 +40,7 @@ export default defineComponent({
 }
 
 .notification__text {
-  color: green;
+  color: var(--colorSuccessSecondary);
   font-size: 18px;
 }
 </style>

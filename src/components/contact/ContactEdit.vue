@@ -188,12 +188,12 @@ export default defineComponent({
 <style scoped>
 .form {
   padding: 24px;
-  border: 1px solid #d8d8d8;
+  border: 1px solid var(--colorBorder);
 }
 .fieldset {
   padding: 24px 0;
   border: none;
-  border-top: 1px solid #d8d8d8;
+  border-top: 1px solid var(--colorBorder);
   display: flex;
   flex-wrap: wrap;
 }
@@ -212,7 +212,7 @@ export default defineComponent({
 }
 
 .input__error {
-  color: crimson;
+  color: var(--colorDanger);
 }
 
 .fieldset .buttons {

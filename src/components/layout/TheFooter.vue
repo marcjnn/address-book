@@ -22,7 +22,6 @@ export default defineComponent({
 
 <style scoped>
 .footer__link {
-  /* text-decoration: none; */
-  color: darkblue;
+  color: var(--colorTextTitle);
 }
 </style>

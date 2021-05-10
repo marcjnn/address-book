@@ -54,8 +54,7 @@ export default defineComponent({
   position: absolute;
   top: 0;
   right: 0;
-  left: 0;
-  background-color: rgba(68, 68, 68, 0.7);
+  background-color: var(--colorBackgroundShadow);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,12 +65,12 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   margin: 0 0 12px;
-  color: darkblue;
+  color: var(--colorTextTitle);
 }
 
 .modal__closeBtn {
   position: absolute;
-  right: 20px;
+  right: 24px;
   top: 50%;
   transform: translate(0, -50%);
 }

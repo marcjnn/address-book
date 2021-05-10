@@ -16,17 +16,17 @@ export default {
 </script>
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--fontMain);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: var(--colorTextMain);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 .page__header {
-  background-color: #f1f1f1;
+  background-color: var(--colorBackground);
   padding: 24px;
   display: flex;
   justify-content: space-between;
@@ -52,7 +52,7 @@ export default {
 
 .form__field {
   padding: 6px;
-  border: 1px solid grey;
+  border: 1px solid var(--colorBorder);
   display: block;
   width: 80%;
 }

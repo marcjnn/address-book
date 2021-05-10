@@ -45,28 +45,14 @@ export default defineComponent({
   cursor: pointer;
 }
 
-/* .btn:disabled {
-  background-color: #d8d8d8;
-  cursor: default;
-}
-
-.btn--create {
-  background-color: var(--colorDetails);
-}
-
-.btn--save,
-.btn--next {
-  background-color: var(--colorFooter);
-} */
-
 .btn--success {
-  color: #0000cc;
-  border: 2px solid #0000cc;
+  color: var(--colorSuccessPrimary);
+  border: 2px solid var(--colorSuccessPrimary);
 }
 
 .btn--danger {
-  color: #c80704;
-  border: 2px solid #c80704;
+  color: var(--colorDanger);
+  border: 2px solid var(--colorDanger);
 }
 
 .btn--round {

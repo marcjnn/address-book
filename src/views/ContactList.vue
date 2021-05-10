@@ -80,6 +80,6 @@ export default defineComponent({
 }
 
 .main__link {
-  color: darkblue;
+  color: var(--colorTextTitle);
 }
 </style>

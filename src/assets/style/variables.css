@@ -1,0 +1,14 @@
+:root {
+  /* COLOR */
+  --colorTextMain: #2c3e50;
+  --colorTextTitle: #00008b;
+  --colorDanger: #c80704;
+  --colorSuccessPrimary: #0000cc;
+  --colorSuccessSecondary: #008000;
+  --colorBorder: #d8d8d8;
+  --colorBackground: #f1f1f1;
+  --colorBackgroundShadow: rgba(68, 68, 68, 0.7);
+
+  /* FONTS */
+  --fontMain: Avenir, Helvetica, Arial, sans-serif;
+}
