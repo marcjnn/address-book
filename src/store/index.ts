@@ -1,8 +1,12 @@
 import { createStore } from "vuex";
 import createPersistedState from "vuex-persistedstate";
 
-import * as contacts from "@/store/modules/contacts";
+import { contacts } from "@/store/modules/contacts";
 import * as notifications from "@/store/modules/notifications";
+
+const dataState = createPersistedState({
+  paths: ["contacts"],
+});
 
 export default createStore({
   state: {},
@@ -10,5 +14,5 @@ export default createStore({
   mutations: {},
   actions: {},
   modules: { contacts, notifications },
-  plugins: [createPersistedState()],
+  plugins: [dataState],
 });
